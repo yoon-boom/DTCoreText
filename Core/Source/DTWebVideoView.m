@@ -26,8 +26,8 @@
 
 - (id)initWithFrame:(CGRect)frame
 {
-    self = [super initWithFrame:frame];
-    if (self) 
+	self = [super initWithFrame:frame];
+	if (self)
 	{
 		self.userInteractionEnabled = YES;
 		
@@ -43,8 +43,8 @@
 		{
 			_webView.allowsInlineMediaPlayback = YES;
 		}
-    }
-    return self;
+	}
+	return self;
 }
 
 - (void)dealloc
@@ -68,7 +68,7 @@
 			
 			return;
 		}
-	}	
+	}
 }
 
 #pragma mark UIWebViewDelegate
@@ -80,13 +80,19 @@
 	{
 		return YES;
 	}
-
+	
+	// allow the embed request for vimeo
+	if (NSNotFound != [[[request URL] absoluteString] rangeOfString:@"player.vimeo.com/video/"].location)
+	{
+		return YES;
+	}
+	
 	// allow the embed request for DailyMotion Cloud
 	if (NSNotFound != [[[request URL] absoluteString] rangeOfString:@"api.dmcloud.net/player/embed/"].location)
 	{
 		return YES;
 	}
-
+	
 	BOOL shouldOpenExternalURL = YES;
 	
 	if ([_delegate respondsToSelector:@selector(videoView:shouldOpenExternalURL:)])
