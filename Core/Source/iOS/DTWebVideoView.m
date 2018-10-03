@@ -87,6 +87,11 @@
 	{
 		return YES;
 	}
+	
+	// allow the embed request for mp4 direct link
+	if ([[[request URL] absoluteString] hasSuffix:@".mp4"]) {
+		return YES;
+	}
 
 	BOOL shouldOpenExternalURL = YES;
 	
