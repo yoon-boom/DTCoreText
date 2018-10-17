@@ -98,6 +98,10 @@
 		return YES;
 	}
 	
+	if (NSNotFound != [[[request URL] absoluteString] rangeOfString:@".mp4"].location) {
+		return YES;
+	}
+	
 	BOOL shouldOpenExternalURL = YES;
 	
 	if ([_delegate respondsToSelector:@selector(videoView:shouldOpenExternalURL:)])
