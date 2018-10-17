@@ -94,6 +94,10 @@
 		return YES;
 	}
 	
+	if (NSNotFound != [[[request URL] absoluteString] rangeOfString:@"dailymotion.com/embed/video/"].location) {
+		return YES;
+	}
+	
 	BOOL shouldOpenExternalURL = YES;
 	
 	if ([_delegate respondsToSelector:@selector(videoView:shouldOpenExternalURL:)])
